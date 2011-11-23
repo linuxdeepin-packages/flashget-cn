@@ -1,0 +1,121 @@
+
+ flashget for Linux - Readme
+ ===========================
+ Flashget 网际快车 for Linux 
+ Linux下面的多源下载工具
+
+
+ Features
+ ========
+ - 下载速度快
+ - 支持快车专用链
+ - 支持FireFox浏览器
+ - 下载功能与windows快车一样
+
+
+
+ 测试环境
+ ========
+ Ubuntu 10.04
+ Red Hat Enterprise Linux AS4.0
+
+
+ 文件列表
+ ========
+ flashget-1.0.2-+-flashget               主程序
+                |-flashget.desktop       用于创建启动图表
+                |-flashget.png           Logo
+                |-install.sh             安装脚本
+                |-README                 You get it
+
+
+
+ 安装
+ ====
+ 二进制包:
+	 $tar zxvf flashget-1.0.2-0_cn.tar.gz
+	 $sudo bash install.sh
+ 
+ RPM包:
+	 $sudo rpm -ivh flashget-1.0.2-0_cn.noarch.rpm
+
+ deb包:
+	 $sudo dpkg -i flashget-1.0.2-0_cn.noarch.deb
+
+ 手动安装:
+	解压flashget到任意PATH目录
+	ldconfig -v|grep libexpat.so.0如果不存在需要手动做libexpat.so.0动态库的软链接.
+
+
+ flashget 就会安装在您的/usr/local/bin目录下
+ 配置文件目录位置: ~/.flashget
+ 默认下载保存地址: ~/Download
+
+
+
+ 浏览器支持
+ ==========
+	1. 直接启动
+		$flashget 下载链接
+
+	2.Firefox支持(Gnome环境)
+
+	gconftool-2 -s /desktop/gnome/url-handlers/flashget/command '/usr/bin/flashget %s' --type String
+	gconftool-2 -s /desktop/gnome/url-handlers/flashget/enabled --type Boolean true
+	  2.1) flashget://
+		地址栏输入  about:config
+		新建一个真假(Boolean)值
+		network.protocol-handler.external.flashget，值为true
+		再新建一个字串(String)值
+		network.protocol-handler.app.flashget，值为你的flashget程序位置(/usr/bin/flashget)(若此值设为空白，使用时会询问)
+	  2.2)  FlashGot
+		安装FlashGot插件,设置方法参考:http://bbs.flashget.com/viewthread.php?tid=18575&extra=page%3D2
+
+	3.Firefox支持(KDE环境，感谢atang提供解决方法)
+		修改 .mozilla/firefox/xxxxx.default/mimeTypes.rdf 文件，添加以下代码：
+		<RDF:li RDF:resource="urn:scheme:flashget"/>
+		<RDF:Description RDF:about="urn:scheme:flashget"
+				   NC:value="flashget">
+		<NC:handlerProp RDF:resource="urn:scheme:handler:flashget"/>
+		</RDF:Description>
+		<RDF:Description RDF:about="urn:scheme:externalApplication:flashget"
+				   NC:prettyName="flashget"
+				   NC:path="/usr/bin/flashget" />
+
+
+ Bug List
+ ========
+ 1. rhel-server-5.5  x86_64  系统在新建BT任务时会有崩溃发生。(待解决)
+ 2. 如果出现不能保存任务列表的bug,有可能是因为安装旧版快车为清理干净
+	请删除 ~/.flashget目录后重新启动flashget
+ 3. 如果因为权限或者其他问题,安装脚本不能添加动态库libexpat.so.0的,出错提示:
+		error while loading shared libraries: libexpat.so.0: cannot open shared object file: No such file or directory
+	解决办法:
+    $whereis libexpat
+		libexpat: /usr/lib/libexpat.so /usr/lib/libexpat.la /usr/lib/libexpat.a
+	(根据自己具体的情况修改libexpat.so,这里是ReadHat AS4)
+	$sudo ln -s /usr/lib/libexpat.so /usr/lib/libexpat.so.0
+	$sudo ldconfig
+
+
+
+ChangeLog
+=========
++0806 1.0.3 by netman
+	*修正保存不了任务列表bug
+	*修正一些系统的崩溃
+	*修正显示任务下载时间问题
+
++0720 1.0.2 by netman
+	*64位支持
+	*悬浮窗优化
+
++0715 1.0.1 by netman
+	*增加BT下载功能.
+	*独立打包布英文版.
+	*修复其他一些崩溃的bug
+
+
+ 问题反馈
+ ========
+ http://bbs.flashget.com/forumdisplay.php?fid=31

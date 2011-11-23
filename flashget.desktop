@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0.2
+Encoding=UTF-8
+Name=FlashGet
+Comment=网际快车
+Exec=/usr/bin/flashget
+Icon=/usr/share/flashget/flashget.png
+Terminal=false
+Type=Application
+Categories=Application;Network;FlashGet;
+StartupNotify=true
+Name[zh_CN]=网际快车FlashGet
+GenericName[zh_CN]=网际快车FlashGet
+Comment[zh_CN]=网际快车FlashGet

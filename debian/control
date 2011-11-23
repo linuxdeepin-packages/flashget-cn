@@ -1,0 +1,16 @@
+Source: flashget-cn
+Section: multiverse/net
+Priority: extra
+Maintainer: YunQiang Su <wzssyqa@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), libgtk2.0-0, libexpat1, libxxf86vm1, libsm6
+Standards-Version: 3.9.2
+Homepage: http://www.flashget.com/
+
+Package: flashget-cn
+Architecture: i386
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: flashget - The best download manager.
+ * No adware and spyware,all Free!
+ * Free to download or distribute absolutely.
+ .
+ This is the Simplified Chinese version.

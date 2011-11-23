@@ -1,0 +1,4 @@
+flashget /usr/bin/
+flashget.png /usr/share/flashget/
+flashget.desktop /usr/share/applications/
+debian/libexpat.so.0 /lib/i386-linux-gnu/
